@@ -9,7 +9,7 @@
             >
             <label class="banner__label" for="selected">Selected 2</label>
         </div>
-        <button class="banner__button">Download Selected</button>
+        <button class="banner__button" @click="showPopup = true">Download Selected</button>
     </div>
     <table class="table">
         <thead>
@@ -29,6 +29,17 @@
             />
         </tbody>
     </table>
+    <div v-if="showPopup" class="popup__overlay">
+        <div class="popup__inner">
+            <button class="popup__close" @click="showPopup = false">
+                <span class="sr-only">Close</span>
+            </button>
+            <ul>
+                <li>Selected 1</li>
+                <li>Selected 2</li>
+            </ul>
+        </div>
+    </div>
 </template>
 
 <script>
@@ -42,6 +53,7 @@ export default {
     data() {
         return {
             itemsDataList: [],
+            showPopup: false,
         };
     },
     created() {
