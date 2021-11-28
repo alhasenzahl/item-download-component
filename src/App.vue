@@ -17,69 +17,38 @@
             </tr>
         </thead>
         <tbody>
-            <tr class="table__row">
-                <td class="table__data -checkbox">
-                    <input class="table__checkbox" type="checkbox" id="smss" name="smss" checked>
-                </td>
-                <td class="table__data">
-                    <label class="table__label" for="smss">smss.exe</label>
-                </td>
-                <td class="table__data">Stark</td>
-                <td class="table__data">\\Device\\HarddiskVolume2\\Windows\\System32\\smss.exe</td>
-                <td class="table__data">scheduled</td>
-            </tr>
-            <tr class="table__row">
-                <td class="table__data -checkbox">
-                    <input class="table__checkbox" type="checkbox" id="netsh" name="netsh" checked>
-                </td>
-                <td class="table__data">
-                    <label class="table__label" for="netsh">netsh.exe</label>
-                </td>
-                <td class="table__data">Targaryen</td>
-                <td class="table__data">\\Device\\HarddiskVolume2\\Windows\\System32\\netsh.exe</td>
-                <td class="table__data">available</td>
-            </tr>
-            <tr class="table__row">
-                <td class="table__data -checkbox">
-                    <input class="table__checkbox" type="checkbox" id="uxtheme" name="uxtheme">
-                </td>
-                <td class="table__data">
-                    <label class="table__label" for="uxtheme">uxtheme.dll</label>
-                </td>
-                <td class="table__data">Lanniester</td>
-                <td class="table__data">\\Device\\HarddiskVol\\Windows\\System32\\uxtheme.dll</td>
-                <td class="table__data">available</td>
-            </tr>
-            <tr class="table__row">
-                <td class="table__data -checkbox">
-                    <input class="table__checkbox" type="checkbox" id="cryptbase" name="cryptbase">
-                </td>
-                <td class="table__data">
-                    <label class="table__label" for="cryptbase">cryptbase.dll</label>
-                </td>
-                <td class="table__data">Martell</td>
-                <td class="table__data">\\Device\\HarddiskVol\\Windows\\System32\\cryptbase.dll</td>
-                <td class="table__data">scheduled</td>
-            </tr>
-            <tr class="table__row">
-                <td class="table__data -checkbox">
-                    <input class="table__checkbox" type="checkbox" id="7za" name="7za" checked>
-                </td>
-                <td class="table__data">
-                    <label class="table__label" for="7za">7za.exe</label>
-                </td>
-                <td class="table__data">Baratheon</td>
-                <td class="table__data">\\Device\\HarddiskVolume1\\temp\\7za.exe</td>
-                <td class="table__data">scheduled</td>
-            </tr>
+            <Item
+                v-for="item in this.itemsDataList"
+                :key="item.name"
+            />
         </tbody>
     </table>
 </template>
 
 <script>
+import Item from './components/Item.vue';
 
 export default {
     name: 'App',
+    components: {
+        Item,
+    },
+    data() {
+        return {
+            itemsDataList: [],
+        };
+    },
+    created() {
+        this.getItemsData();
+    },
+    methods: {
+        getItemsData() {
+            fetch('items.json')
+                .then((response) => response.json())
+                // eslint-disable-next-line no-return-assign
+                .then((data) => (this.itemsDataList = data));
+        },
+    },
 };
 </script>
 
