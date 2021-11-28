@@ -7,7 +7,14 @@
                 id="selected"
                 name="selected"
             >
-            <label class="banner__label" for="selected">Selected {{ selectedItems.length }}</label>
+            <label
+                v-if="selectedItems.length > 0"
+                class="banner__label"
+                for="selected"
+            >
+                Selected {{ selectedItems.length }}
+            </label>
+            <label v-else class="banner__label" for="selected">None Selected</label>
         </div>
         <button class="banner__button" @click="showPopup = true">Download Selected</button>
     </div>
