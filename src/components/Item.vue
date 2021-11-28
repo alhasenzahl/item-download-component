@@ -6,6 +6,7 @@
                 type="checkbox"
                 id="{{ item.name }}"
                 name="{{ item.name }}"
+                :disabled="item.status !== 'available' ? true : false"
             >
         </td>
         <td class="table__data">
