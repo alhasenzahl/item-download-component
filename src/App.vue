@@ -20,6 +20,7 @@
             <Item
                 v-for="item in this.itemsDataList"
                 :key="item.name"
+                :item="item"
             />
         </tbody>
     </table>

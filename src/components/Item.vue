@@ -4,11 +4,11 @@
             <input class="table__checkbox" type="checkbox" id="smss" name="smss" checked>
         </td>
         <td class="table__data">
-            <label class="table__label" for="smss">smss.exe</label>
+            <label class="table__label" for="smss">{{ item.name }}</label>
         </td>
-        <td class="table__data">Stark</td>
-        <td class="table__data">\\Device\\HarddiskVolume2\\Windows\\System32\\smss.exe</td>
-        <td class="table__data">scheduled</td>
+        <td class="table__data">{{ item.device }}</td>
+        <td class="table__data">{{ item.path }}</td>
+        <td class="table__data">{{ item.status }}</td>
     </tr>
 </template>
 
