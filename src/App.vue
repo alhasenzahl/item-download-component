@@ -1,7 +1,12 @@
 <template>
     <div class="banner">
         <div class="banner__select">
-            <input class="banner__checkbox" type="checkbox" id="selected" name="selected" checked>
+            <input
+                class="banner__checkbox"
+                type="checkbox"
+                id="selected"
+                name="selected"
+            >
             <label class="banner__label" for="selected">Selected 2</label>
         </div>
         <button class="banner__button">Download Selected</button>
@@ -62,6 +67,7 @@ export default {
     color: #2c3e50;
     margin-top: 60px;
 }
+
 .banner {
     border-bottom: 1px solid grey;
     display: flex;

@@ -1,10 +1,15 @@
 <template>
     <tr class="table__row">
         <td class="table__data -checkbox">
-            <input class="table__checkbox" type="checkbox" id="smss" name="smss" checked>
+            <input
+                class="table__checkbox"
+                type="checkbox"
+                id="{{ item.name }}"
+                name="{{ item.name }}"
+            >
         </td>
         <td class="table__data">
-            <label class="table__label" for="smss">{{ item.name }}</label>
+            <label class="table__label" for="{{ item.name }}">{{ item.name }}</label>
         </td>
         <td class="table__data">{{ item.device }}</td>
         <td class="table__data">{{ item.path }}</td>
