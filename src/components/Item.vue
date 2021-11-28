@@ -6,7 +6,9 @@
                 type="checkbox"
                 id="{{ item.name }}"
                 name="{{ item.name }}"
+                value="{{ item.name }}"
                 :disabled="item.status !== 'available' ? true : false"
+                @change="$emit('makeSelections', item);"
             >
         </td>
         <td class="table__data">

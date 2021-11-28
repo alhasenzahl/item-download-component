@@ -7,7 +7,7 @@
                 id="selected"
                 name="selected"
             >
-            <label class="banner__label" for="selected">Selected 2</label>
+            <label class="banner__label" for="selected">Selected {{ selectedItems.length }}</label>
         </div>
         <button class="banner__button" @click="showPopup = true">Download Selected</button>
     </div>
@@ -26,17 +26,22 @@
                 v-for="item in this.itemsDataList"
                 :key="item.name"
                 :item="item"
+                @makeSelections="selectItems(item)"
             />
         </tbody>
     </table>
     <div v-if="showPopup" class="popup__overlay">
-        <div class="popup__inner">
+        <div class="popup">
             <button class="popup__close" @click="showPopup = false">
                 <span class="sr-only">Close</span>
             </button>
             <ul>
-                <li>Selected 1</li>
-                <li>Selected 2</li>
+                <li
+                    v-for="item in this.selectedItems"
+                    :key="item.name"
+                >
+                    {{ item.device }} - {{ item.path }}
+                </li>
             </ul>
         </div>
     </div>
@@ -53,6 +58,7 @@ export default {
     data() {
         return {
             itemsDataList: [],
+            selectedItems: [],
             showPopup: false,
         };
     },
@@ -65,6 +71,13 @@ export default {
                 .then((response) => response.json())
                 // eslint-disable-next-line no-return-assign
                 .then((data) => (this.itemsDataList = data));
+        },
+        selectItems(item) {
+            if (this.selectedItems.indexOf(item) === - 1) {
+                this.selectedItems.push(item);
+            } else {
+                this.selectedItems.splice(this.selectedItems.indexOf(item), 1);
+            }
         },
     },
 };
@@ -112,6 +125,50 @@ export default {
     &__data {
         &.-checkbox {
             padding: 0.5rem 0;
+        }
+    }
+}
+
+.popup {
+    background-color: white;
+    border-radius: 2rem;
+    left: 50%;
+    max-width: 40rem;
+    position: absolute;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    width: 90%;
+    z-index: 41;
+
+    &__overlay {
+        align-items: flex-start;
+        background-color: rgba(0, 0, 0, 0.5);
+        bottom: 0;
+        display: flex;
+        justify-content: center;
+        left: 0;
+        overflow: scroll;
+        padding: 2rem;
+        position: fixed;
+        right: 0;
+        top: 0;
+        z-index: 100;
+    }
+
+    &__close {
+        background-color: white;
+        border: 1px solid grey;
+        border-radius: 50%;
+        padding: 1.5rem;
+        position: absolute;
+        right: -1rem;
+        top: -1rem;
+
+        &:hover,
+        &:focus,
+        &:active {
+            background-color: black;
+            color: white;
         }
     }
 }
