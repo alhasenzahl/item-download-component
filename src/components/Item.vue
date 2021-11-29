@@ -16,7 +16,11 @@
         </td>
         <td class="table__data">{{ item.device }}</td>
         <td class="table__data">{{ item.path }}</td>
-        <td class="table__data">{{ item.status }}</td>
+        <td
+            :class="['table__data', { '-is-available': item.status === 'available' }]"
+        >
+            {{ capitalize(item.status) }}
+        </td>
     </tr>
 </template>
 
@@ -24,6 +28,15 @@
 export default {
     name: 'Item',
     props: ['item'],
+    methods: {
+        capitalize(str) {
+            const capitalized = [];
+
+            capitalized.push(str.charAt(0).toUpperCase() + str.slice(1).toLowerCase());
+
+            return capitalized.join(' ');
+        },
+    },
 };
 </script>
 

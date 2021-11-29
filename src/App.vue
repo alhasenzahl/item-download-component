@@ -140,6 +140,22 @@ export default {
         &.-checkbox {
             padding: 0.5rem 0;
         }
+
+        &.-is-available {
+            position: relative;
+
+            &::before {
+                background-color: green;
+                border-radius: 50%;
+                content: '';
+                height: 1rem;
+                left: -1rem;
+                position: absolute;
+                top: 50%;
+                transform: translateY(-50%);
+                width: 1rem;
+            }
+        }
     }
 }
 
