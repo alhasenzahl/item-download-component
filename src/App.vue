@@ -120,6 +120,18 @@ export default {
     &__label {
         padding-left: 1.5rem;
     }
+
+    &__button {
+        background: none;
+        border: none;
+        cursor: pointer;
+        font-family: inherit;
+        font-size: 1rem;
+
+        &:disabled {
+            cursor: not-allowed;
+        }
+    }
 }
 
 .table {
