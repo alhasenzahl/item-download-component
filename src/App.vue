@@ -16,7 +16,13 @@
             </label>
             <label v-else class="banner__label" for="selected">None Selected</label>
         </div>
-        <button class="banner__button" @click="showPopup = true">Download Selected</button>
+        <button
+            class="banner__button"
+            @click="showPopup = true"
+            :disabled="selectedItems.length === 0 ? true : false"
+        >
+            Download Selected
+        </button>
     </div>
     <table class="table">
         <thead>
@@ -42,10 +48,11 @@
             <button class="popup__close" @click="showPopup = false">
                 <span class="sr-only">Close</span>
             </button>
-            <ul>
+            <ul class="popup__list">
                 <li
                     v-for="item in this.selectedItems"
                     :key="item.name"
+                    class="popup__item"
                 >
                     {{ item.device }} - {{ item.path }}
                 </li>
@@ -141,11 +148,12 @@ export default {
     border-radius: 2rem;
     left: 50%;
     max-width: 40rem;
+    padding: 5rem 0;
     position: absolute;
     top: 50%;
     transform: translate(-50%, -50%);
     width: 90%;
-    z-index: 41;
+    z-index: 2;
 
     &__overlay {
         align-items: flex-start;
@@ -177,6 +185,15 @@ export default {
             background-color: black;
             color: white;
         }
+    }
+
+    &__list {
+        list-style-type: none;
+    }
+
+    &__item {
+        padding-right: 4.5rem;
+        text-align: left;
     }
 }
 </style>
