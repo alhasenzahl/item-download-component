@@ -25,7 +25,7 @@
         </button>
     </div>
     <table class="table">
-        <thead>
+        <thead class="table__head">
             <tr class="table__row">
                 <th class="table__header"></th>
                 <th class="table__header">Name</th>
@@ -95,6 +95,9 @@ export default {
         },
     },
 };
+
+// Background of table row needs to change on:
+// 2. when row checkbox is checked
 </script>
 
 <style lang="scss">
@@ -135,11 +138,25 @@ export default {
 }
 
 .table {
+    $scope: &;
+
     border-collapse: collapse;
     width: 100%;
 
     &__row {
         border-bottom: 1px solid grey;
+
+        &:hover {
+            background-color: rgba(0, 0, 0, 0.1);
+        }
+    }
+
+    &__head {
+        #{$scope}__row {
+            &:hover {
+                background: none;
+            }
+        }
     }
 
     &__header,

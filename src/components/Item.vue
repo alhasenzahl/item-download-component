@@ -3,6 +3,7 @@
         <td class="table__data -checkbox">
             <input
                 class="table__checkbox"
+                ref="checkbox"
                 type="checkbox"
                 id="{{ item.name }}"
                 name="{{ item.name }}"
@@ -28,6 +29,9 @@
 export default {
     name: 'Item',
     props: ['item'],
+    mounted() {
+        console.log(this.$refs.checkbox);
+    },
     methods: {
         capitalize(str) {
             const capitalized = [];
@@ -36,6 +40,9 @@ export default {
 
             return capitalized.join(' ');
         },
+        // isBoxChecked() {
+        //     const checkboxes = this.$refs.checkbox;
+        // },
     },
 };
 </script>
